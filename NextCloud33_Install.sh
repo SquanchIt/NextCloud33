@@ -1,21 +1,25 @@
 #!/bin/bash
 
+
 #############################################
 # Global directory layout
 #############################################
 
-BASE_DIR="/root/nextcloud"
-LOG_DIR="/root/log"
-BIN_DIR="/root/.bin"
-ETC_DIR="/root/etc"
+init_directories() {
+    export BASE_DIR="/root/nextcloud"
+    export LOG_DIR="/root/log"
+    export BIN_DIR="/root/.bin"
+    export ETC_DIR="/root/etc"
 
-LOG_DATE=$(date +"%Y%m%d%H%M%S")
-LOG_FILE="${LOG_DIR}/NextCloud33_install_${LOG_DATE}.log"
+    # Ensure directories exist
+    mkdir -p "$BASE_DIR" \
+             "$LOG_DIR" \
+             "$BIN_DIR" \
+             "$ETC_DIR"
+}
 
-mkdir -p "$LOG_DIR"
+init_directories
 
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
 
 exec > >(tee -a "$LOG_FILE") 2>&1
 
