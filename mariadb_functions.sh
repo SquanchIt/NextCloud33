@@ -53,7 +53,7 @@ install_mariadb_full() {
     list_mariadb_modules
     reset_mariadb_module
     enable_mariadb_module
-    install_mariadb
+    install_mariadb_packages
     start_mariadb
     verify_mariadb
 }
