@@ -88,7 +88,6 @@ done
 # Configuration
 #############################################
 
-PHP_PACKAGES_FILE="${ETC_DIR}/php-packages.txt"
 MARIADB_PACKAGES_FILE="${ETC_DIR}/mariadb-packages.txt"
 
 #############################################
@@ -139,6 +138,7 @@ echo "Log file: $LOG_FILE"
 
 if [[ "$INSTALL_PHP" == true ]]; then
     log_step "PHP Installation"
+    PHP_PACKAGES_FILE="${ETC_DIR}/php-packages.txt"
     source "$SCRIPT_DIR/php_functions.sh"
     install_php_full
 fi
