@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 #############################################
 # Software Versions
@@ -83,7 +84,7 @@ while [[ $# -gt 0 ]]; do
     esac
     shift
 done
- 
+
 #############################################
 # Step tracking / logging helpers
 #############################################
@@ -130,7 +131,11 @@ echo "Log file: $LOG_FILE"
 
 if [[ "$INSTALL_PHP" == true ]]; then
     log_step "PHP Installation"
+
     PHP_PACKAGES_FILE="${ETC_DIR}/php-packages.txt"
+    export PHP_PACKAGES_FILE
+    export PHP_VERSION
+
     source "$SCRIPT_DIR/php_functions.sh"
     install_php_full
 fi
