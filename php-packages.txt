@@ -1,0 +1,17 @@
+php
+php-cli
+php-fpm
+php-common
+php-opcache
+php-curl
+php-gd
+php-mbstring
+php-intl
+php-xml
+php-zip
+php-mysqlnd
+php-process
+php-pecl-apcu
+php-pecl-redis
+php-exif
+php-gmp
