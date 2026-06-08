@@ -1,6 +1,13 @@
 #!/bin/bash
 
 #############################################
+# Software Versions
+#############################################
+
+PHP_VERSION="8.3"
+MARIADB_VERSION="10.11"
+
+#############################################
 # Defaults (IMPORTANT)
 #############################################
 
@@ -80,9 +87,6 @@ done
 #############################################
 # Configuration
 #############################################
-
-PHP_VERSION="8.3"
-MARIADB_VERSION="10.11"
 
 PHP_PACKAGES_FILE="${ETC_DIR}/php-packages.txt"
 MARIADB_PACKAGES_FILE="${ETC_DIR}/mariadb-packages.txt"
