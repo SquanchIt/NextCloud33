@@ -140,12 +140,7 @@ echo "Log file: $LOG_FILE"
 
 if [[ "$INSTALL_PHP" == true ]]; then
     log_step "PHP Installation"
-
-    list_php_modules
-    reset_php_module
-    enable_php_module
     install_php
-    verify_php
 fi
 
 #############################################
