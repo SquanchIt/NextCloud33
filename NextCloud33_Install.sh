@@ -83,13 +83,7 @@ while [[ $# -gt 0 ]]; do
     esac
     shift
 done
-
-#############################################
-# Configuration
-#############################################
-
-MARIADB_PACKAGES_FILE="${ETC_DIR}/mariadb-packages.txt"
-
+ 
 #############################################
 # Step tracking / logging helpers
 #############################################
@@ -149,7 +143,7 @@ fi
 
 if [[ "$INSTALL_DB" == true ]]; then
     log_step "MariaDB Installation"
-
+    MARIADB_PACKAGES_FILE="${ETC_DIR}/mariadb-packages.txt"
     list_mariadb_modules
     reset_mariadb_module
     enable_mariadb_module
