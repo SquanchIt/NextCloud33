@@ -117,8 +117,6 @@ print_header() {
 
 SCRIPT_DIR="$BIN_DIR"
 
-source "$SCRIPT_DIR/mariadb_functions.sh"
-
 #############################################
 # Main
 #############################################
@@ -144,6 +142,7 @@ fi
 if [[ "$INSTALL_DB" == true ]]; then
     log_step "MariaDB Installation"
     MARIADB_PACKAGES_FILE="${ETC_DIR}/mariadb-packages.txt"
+    source "$SCRIPT_DIR/mariadb_functions.sh"
     list_mariadb_modules
     reset_mariadb_module
     enable_mariadb_module
