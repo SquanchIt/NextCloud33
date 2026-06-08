@@ -1,6 +1,55 @@
 #!/bin/bash
 
 #############################################
+# Defaults (IMPORTANT)
+#############################################
+
+INSTALL_PHP=false
+INSTALL_DB=false
+
+#############################################
+# Global directory layout
+#############################################
+
+init_directories() {
+    export BASE_DIR="/root/nextcloud"
+    export LOG_DIR="/root/log"
+    export BIN_DIR="/root/.bin"
+    export ETC_DIR="/root/etc"
+
+    mkdir -p "$BASE_DIR" \
+             "$LOG_DIR" \
+             "$BIN_DIR" \
+             "$ETC_DIR"
+}
+
+init_directories
+
+#############################################
+# Log file (must exist before exec redirect)
+#############################################
+
+LOG_FILE="${LOG_DIR}/nextcloud-setup.log"
+
+exec > >(tee -a "$LOG_FILE") 2>&1
+
+#############################################
+# Usage
+#############################################
+
+usage() {
+    cat <<EOF
+Usage: $0 [OPTIONS]
+
+Options:
+  --php     Install PHP only
+  --db      Install MariaDB only
+  --all     Install both PHP and MariaDB
+EOF
+    exit 1
+}
+
+#############################################
 # Parse arguments
 #############################################
 
@@ -27,29 +76,6 @@ while [[ $# -gt 0 ]]; do
     esac
     shift
 done
-
-
-#############################################
-# Global directory layout
-#############################################
-
-init_directories() {
-    export BASE_DIR="/root/nextcloud"
-    export LOG_DIR="/root/log"
-    export BIN_DIR="/root/.bin"
-    export ETC_DIR="/root/etc"
-
-    # Ensure directories exist
-    mkdir -p "$BASE_DIR" \
-             "$LOG_DIR" \
-             "$BIN_DIR" \
-             "$ETC_DIR"
-}
-
-init_directories
-
-
-exec > >(tee -a "$LOG_FILE") 2>&1
 
 #############################################
 # Configuration
@@ -104,19 +130,38 @@ source "$SCRIPT_DIR/php_functions.sh"
 log_step "Nextcloud 33 Setup (PHP + MariaDB)"
 echo "Log file: $LOG_FILE"
 
-list_php_modules
-# list_mariadb_modules
+#############################################
+# PHP installation (conditional)
+#############################################
 
-reset_php_module
-enable_php_module
-install_php
-verify_php
+if [[ "$INSTALL_PHP" == true ]]; then
+    log_step "PHP Installation"
 
-# reset_mariadb_module
-# enable_mariadb_module
-# install_mariadb
-# start_mariadb
-#verify_mariadb
+    list_php_modules
+    reset_php_module
+    enable_php_module
+    install_php
+    verify_php
+fi
+
+#############################################
+# MariaDB installation (conditional)
+#############################################
+
+if [[ "$INSTALL_DB" == true ]]; then
+    log_step "MariaDB Installation"
+
+    list_mariadb_modules
+    reset_mariadb_module
+    enable_mariadb_module
+    install_mariadb
+    start_mariadb
+    verify_mariadb
+fi
+
+#############################################
+# Completion
+#############################################
 
 log_step "Installation complete"
 echo "Log saved to: $LOG_FILE"
