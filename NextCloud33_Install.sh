@@ -1,5 +1,33 @@
 #!/bin/bash
 
+#############################################
+# Parse arguments
+#############################################
+
+if [[ $# -eq 0 ]]; then
+    usage
+fi
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --php)
+            INSTALL_PHP=true
+            ;;
+        --db)
+            INSTALL_DB=true
+            ;;
+        --all)
+            INSTALL_PHP=true
+            INSTALL_DB=true
+            ;;
+        *)
+            echo "Unknown option: $1"
+            usage
+            ;;
+    esac
+    shift
+done
+
 
 #############################################
 # Global directory layout
