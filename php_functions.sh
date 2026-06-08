@@ -37,3 +37,15 @@ verify_php() {
     log_step "Verify PHP installation"
     php -v
 }
+
+#############################################
+# PHP installation (conditional)
+#############################################
+
+install_php() {
+    list_php_modules
+    reset_php_module
+    enable_php_module
+    install_php
+    verify_php
+}
