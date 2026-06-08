@@ -4,7 +4,7 @@
 # Global directory layout
 #############################################
 
-BASE_DIR="/root/NextCloud"
+BASE_DIR="/root/nextcloud"
 LOG_DIR="/root/log"
 BIN_DIR="/root/.bin"
 ETC_DIR="/root/etc"
