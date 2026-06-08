@@ -19,7 +19,7 @@ enable_php_module() {
     sudo dnf module enable php:${PHP_VERSION} -y
 }
 
-install_php() {
+install_php_packages() {
     log_step "Install PHP packages"
 
     log_info "Reading from ${PHP_PACKAGES_FILE}"
@@ -42,10 +42,10 @@ verify_php() {
 # PHP installation (conditional)
 #############################################
 
-install_php() {
+install_php_full() {
     list_php_modules
     reset_php_module
     enable_php_module
-    install_php
+    install_php_packages
     verify_php
 }
