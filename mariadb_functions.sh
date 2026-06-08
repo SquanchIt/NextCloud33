@@ -28,7 +28,7 @@ read_mariadb_packages() {
     grep -vE '^\s*#|^\s*$' "$MARIADB_PACKAGES_FILE"
 }
 
-install_mariadb() {
+install_mariadb_packages() {
     log_step "Install MariaDB packages"
 
     log_info "Reading from ${MARIADB_PACKAGES_FILE}"
@@ -48,3 +48,13 @@ verify_mariadb() {
     mysql --version
     systemctl status mariadb --no-pager
 }
+
+install_mariadb_full() {
+    list_mariadb_modules
+    reset_mariadb_module
+    enable_mariadb_module
+    install_mariadb
+    start_mariadb
+    verify_mariadb
+}
+
