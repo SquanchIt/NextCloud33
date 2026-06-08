@@ -8,13 +8,6 @@ PHP_VERSION="8.3"
 MARIADB_VERSION="10.11"
 
 #############################################
-# Defaults (IMPORTANT)
-#############################################
-
-INSTALL_PHP=false
-INSTALL_DB=false
-
-#############################################
 # Global directory layout
 #############################################
 
@@ -31,6 +24,13 @@ init_directories() {
 }
 
 init_directories
+
+#############################################
+# Defaults (IMPORTANT)
+#############################################
+
+INSTALL_PHP=false
+INSTALL_DB=false
 
 #############################################
 # Log file (must exist before exec redirect)
