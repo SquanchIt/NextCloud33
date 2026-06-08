@@ -124,8 +124,7 @@ print_header() {
 
 SCRIPT_DIR="$BIN_DIR"
 
-source "$SCRIPT_DIR/php_functions.sh"
-# source "$SCRIPT_DIR/mariadb_functions.sh"
+source "$SCRIPT_DIR/mariadb_functions.sh"
 
 #############################################
 # Main
@@ -140,6 +139,7 @@ echo "Log file: $LOG_FILE"
 
 if [[ "$INSTALL_PHP" == true ]]; then
     log_step "PHP Installation"
+    source "$SCRIPT_DIR/php_functions.sh"
     install_php_full
 fi
 
