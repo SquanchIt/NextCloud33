@@ -140,7 +140,7 @@ echo "Log file: $LOG_FILE"
 
 if [[ "$INSTALL_PHP" == true ]]; then
     log_step "PHP Installation"
-    install_php
+    install_php_full
 fi
 
 #############################################
