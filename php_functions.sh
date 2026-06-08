@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 #############################################
 # PHP functions only
@@ -15,13 +16,22 @@ reset_php_module() {
 }
 
 enable_php_module() {
+    if [[ -z "${PHP_VERSION:-}" ]]; then
+        echo "ERROR: PHP_VERSION not set"
+        exit 1
+    fi
+
     log_step "Enable PHP ${PHP_VERSION}"
-    sudo dnf module enable php:${PHP_VERSION} -y
+    sudo dnf module enable "php:${PHP_VERSION}" -y
 }
 
 install_php_packages() {
-    log_step "Install PHP packages"
+    if [[ -z "${PHP_PACKAGES_FILE:-}" ]]; then
+        echo "ERROR: PHP_PACKAGES_FILE not set"
+        exit 1
+    fi
 
+    log_step "Install PHP packages"
     log_info "Reading from ${PHP_PACKAGES_FILE}"
 
     if [[ ! -f "$PHP_PACKAGES_FILE" ]]; then
@@ -29,8 +39,14 @@ install_php_packages() {
         exit 1
     fi
 
-    PHP_PACKAGES=$(grep -vE '^\s*#|^\s*$' "$PHP_PACKAGES_FILE")
-    sudo dnf install -y $PHP_PACKAGES
+    mapfile -t PHP_PACKAGES < <(grep -vE '^\s*#|^\s*$' "$PHP_PACKAGES_FILE")
+
+    if [[ "${#PHP_PACKAGES[@]}" -eq 0 ]]; then
+        echo "ERROR: No PHP packages found in: $PHP_PACKAGES_FILE"
+        exit 1
+    fi
+
+    sudo dnf install -y "${PHP_PACKAGES[@]}"
 }
 
 verify_php() {
