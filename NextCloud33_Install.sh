@@ -148,12 +148,7 @@ if [[ "$INSTALL_DB" == true ]]; then
     log_step "MariaDB Installation"
     MARIADB_PACKAGES_FILE="${ETC_DIR}/mariadb-packages.txt"
     source "$SCRIPT_DIR/mariadb_functions.sh"
-    list_mariadb_modules
-    reset_mariadb_module
-    enable_mariadb_module
-    install_mariadb
-    start_mariadb
-    verify_mariadb
+    install_mariadb_full
 fi
 
 #############################################
