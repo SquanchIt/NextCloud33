@@ -126,8 +126,6 @@ echo "Log file: $LOG_FILE"
 
 if [[ "$CREATE_DIRS" == true ]]; then
     init_directories
-else
-    # still set variables, but do NOT mkdir
 fi
 
 #############################################
