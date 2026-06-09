@@ -124,7 +124,10 @@ echo "Log file: $LOG_FILE"
 #############################################
 
 if [[ "$CREATE_DIRS" == true ]]; then
-    init_directories
+    mkdir -p $BASE_DIR
+    mkdir -p $LOG_DIR
+    mkdir -p $BIN_DIR
+    mkdir -p $ETC_DIR
 fi
 
 #############################################
