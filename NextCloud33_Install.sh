@@ -15,7 +15,7 @@ MARIADB_VERSION="10.11"
 export BASE_DIR="/root/nextcloud"
 
 export LOG_DIR="$BASE_DIR/log"
-export BIN_DIR="$BASE_DIR/.bin"
+export BIN_DIR="$BASE_DIR/bin"
 export ETC_DIR="$BASE_DIR/etc"
 
 # The variable assignment below is silly. 
