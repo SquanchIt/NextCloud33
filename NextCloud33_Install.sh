@@ -127,7 +127,7 @@ print_header() {
 # Main
 #############################################
 
-log_step "Nextcloud 33 Installation"
+log_step "Nextcloud $NEXTCLOUD_VERSION Installation"
 echo "Log file: $LOG_FILE"
 
 #############################################
