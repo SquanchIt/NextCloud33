@@ -5,6 +5,7 @@ set -euo pipefail
 # Software Versions
 #############################################
 
+NEXTCLOUD_VERSION=33
 PHP_VERSION="8.3"
 MARIADB_VERSION="10.11"
 
