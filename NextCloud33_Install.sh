@@ -116,7 +116,7 @@ print_header() {
 # Main
 #############################################
 
-log_step "Nextcloud 33 Setup (PHP + MariaDB)"
+log_step "Nextcloud 33 Installation"
 echo "Log file: $LOG_FILE"
 
 #############################################
