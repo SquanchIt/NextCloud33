@@ -9,24 +9,6 @@ PHP_VERSION="8.3"
 MARIADB_VERSION="10.11"
 
 #############################################
-# Global directory layout
-#############################################
-
-init_directories() {
-    export BASE_DIR="/root/nextcloud"
-    export LOG_DIR="/root/log"
-    export BIN_DIR="/root/.bin"
-    export ETC_DIR="/root/etc"
-
-    mkdir -p "$BASE_DIR" \
-             "$LOG_DIR" \
-             "$BIN_DIR" \
-             "$ETC_DIR"
-}
-
-init_directories
-
-#############################################
 # Defaults (IMPORTANT)
 #############################################
 
@@ -130,6 +112,20 @@ SCRIPT_DIR="$BIN_DIR"
 
 log_step "Nextcloud 33 Setup (PHP + MariaDB)"
 echo "Log file: $LOG_FILE"
+
+#############################################
+# Directory Creation (conditional)
+#############################################
+
+if [[ "$CREATE_DIRS" == true ]]; then
+    init_directories
+else
+    # still set variables, but do NOT mkdir
+    export BASE_DIR="/root/nextcloud"
+    export LOG_DIR="/root/log"
+    export BIN_DIR="/root/.bin"
+    export ETC_DIR="/root/etc"
+fi
 
 #############################################
 # PHP installation (conditional)
