@@ -35,7 +35,15 @@ CREATE_DIRS=false
 # Log file (must exist before exec redirect)
 #############################################
 
-LOG_FILE="${LOG_DIR}/nextcloud-setup.log"
+# Script name without .sh
+SCRIPT_NAME="$(basename "$0" .sh)"
+
+# Timestamp: yyyymmddhhmmss
+DATE_STR="$(date +%Y%m%d%H%M%S)"
+
+# Log filename
+LOG_FILE="${LOG_DIR}/${SCRIPT_NAME}_${DATE_STR}.log"
+
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 #############################################
