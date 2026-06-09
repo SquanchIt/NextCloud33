@@ -33,7 +33,6 @@ CREATE_DIRS=false
 # Log file (must exist before exec redirect)
 #############################################
 
-export LOG_DIR="/root/log"
 LOG_FILE="${LOG_DIR}/nextcloud-setup.log"
 exec > >(tee -a "$LOG_FILE") 2>&1
 
