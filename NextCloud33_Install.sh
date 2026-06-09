@@ -9,6 +9,15 @@ PHP_VERSION="8.3"
 MARIADB_VERSION="10.11"
 
 #############################################
+# Define Paths
+#############################################
+
+export BASE_DIR="/root/nextcloud"
+export LOG_DIR="/root/log"
+export BIN_DIR="/root/.bin"
+export ETC_DIR="/root/etc"
+
+#############################################
 # Defaults (IMPORTANT)
 #############################################
 
@@ -20,8 +29,8 @@ CREATE_DIRS=false
 # Log file (must exist before exec redirect)
 #############################################
 
+export LOG_DIR="/root/log"
 LOG_FILE="${LOG_DIR}/nextcloud-setup.log"
-
 exec > >(tee -a "$LOG_FILE") 2>&1
 
 #############################################
@@ -121,10 +130,6 @@ if [[ "$CREATE_DIRS" == true ]]; then
     init_directories
 else
     # still set variables, but do NOT mkdir
-    export BASE_DIR="/root/nextcloud"
-    export LOG_DIR="/root/log"
-    export BIN_DIR="/root/.bin"
-    export ETC_DIR="/root/etc"
 fi
 
 #############################################
