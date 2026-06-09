@@ -32,6 +32,7 @@ init_directories
 
 INSTALL_PHP=false
 INSTALL_DB=false
+CREATE_DIRS=false
 
 #############################################
 # Log file (must exist before exec redirect)
@@ -78,6 +79,9 @@ while [[ $# -gt 0 ]]; do
         --all)
             INSTALL_PHP=true
             INSTALL_DB=true
+            ;;
+        --dir)
+            CREATE_DIRS=true
             ;;
         *)
             echo "Unknown option: $1"
