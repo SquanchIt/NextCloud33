@@ -50,12 +50,14 @@ usage() {
 Usage: $0 [OPTIONS]
 
 Options:
-  --php     Install PHP only
-  --db      Install MariaDB only
-  --all     Install both PHP and MariaDB
+  --php           Install PHP only
+  --db            Install MariaDB only
+  --all           Install both PHP and MariaDB
+  --dir           Create required directory structure
 EOF
     exit 1
 }
+
 
 #############################################
 # Parse arguments
