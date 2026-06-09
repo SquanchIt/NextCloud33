@@ -16,6 +16,10 @@ export BASE_DIR="/root/nextcloud"
 export LOG_DIR="/root/log"
 export BIN_DIR="/root/.bin"
 export ETC_DIR="/root/etc"
+# The variable assignment below is silly. 
+# Need to search and replace.
+export SCRIPT_DIR="$BIN_DIR"
+
 
 #############################################
 # Defaults (IMPORTANT)
@@ -108,12 +112,6 @@ print_header() {
     echo "--------------------------------------"
     echo
 }
-
-#############################################
-# Load external function modules
-#############################################
-
-SCRIPT_DIR="$BIN_DIR"
 
 #############################################
 # Main
